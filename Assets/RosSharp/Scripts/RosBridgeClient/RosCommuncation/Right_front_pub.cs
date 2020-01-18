@@ -43,9 +43,7 @@ namespace RosSharp.RosBridgeClient
 
         public void publisheye()
         {
-            
-            //eye = new Virtualcam_handler();
-            
+          
             message.header.Update();
 
             screenShot = eye.process_virtualcam(cam);
@@ -55,9 +53,7 @@ namespace RosSharp.RosBridgeClient
             //System.IO.File.WriteAllBytes("filename.jpg", bytes);
 
             Publish(message);
-            //System.GC.Collect();
-            //Destroy(eye);
-            //Destroy(screenShot);
+
         }
 
         private void InitializeMessage()
