@@ -14,6 +14,7 @@ limitations under the License.
 */
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RosSharp.RosBridgeClient
 {
@@ -24,11 +25,14 @@ namespace RosSharp.RosBridgeClient
 
         private Texture2D texture2D;
         private byte[] imageData;
-        public bool isMessageReceived;
+        private bool isMessageReceived;
 
         //Shphere stuff
         public GameObject sphere1;
         public GameObject sphere2;
+
+        //Unity event trigger
+        public UnityEvent img_recieved;
 
         
 
@@ -61,6 +65,8 @@ namespace RosSharp.RosBridgeClient
 
             sphere1.GetComponent<Renderer>().material.mainTexture = texture2D;
             sphere2.GetComponent<Renderer>().material.mainTexture = texture2D;
+
+            img_recieved.Invoke();
 
             isMessageReceived = false;
         }

@@ -1,4 +1,4 @@
-/*
+﻿/*
 © CentraleSupelec, 2017
 Author: Dr. Jeremy Fix (jeremy.fix@centralesupelec.fr)
 
@@ -21,7 +21,7 @@ using UnityEngine;
 
 namespace RosSharp.RosBridgeClient
 {
-    public class ImagePublisher : UnityPublisher<MessageTypes.Sensor.CompressedImage>
+    public class Original_publish : UnityPublisher<MessageTypes.Sensor.CompressedImage>
     {
         //public Camera Cam;
         public string FrameId = "Camera";
@@ -39,60 +39,39 @@ namespace RosSharp.RosBridgeClient
         private bool msgrecieve;
 
 
-
-        //protected override void Start()
-        //{
-        //    base.Start();
-        //    InitializeGameObject();
-        //    InitializeMessage();
-        //    Camera.onPostRender += UpdateImage;
-        //}
-
-        //private void UpdateImage(Camera _camera)
-        //{
-        //    if (texture2D != null && _camera == this.ImageCamera)
-        //        UpdateMessage();
-        //}
-
-        //private void InitializeGameObject()s
-        //{
-        //    texture2D = new Texture2D(resolutionWidth, resolutionHeight, TextureFormat.RGB24, false);
-        //    rect = new Rect(0, 0, resolutionWidth, resolutionHeight);
-        //    ImageCamera.targetTexture = new RenderTexture(resolutionWidth, resolutionHeight, 24);
-        //}
-        private void Update()
+        public void publisheye(Camera Cam)
         {
             //msgrecieve = rosconnect.GetComponent<ImageSubscriber>().isMessageReceived;
 
 
             //if (msgrecieve == true)
             //{
-                InitializeMessage();
+            InitializeMessage();
 
 
-                Camera Cam = Camera.main;
+            //Camera Cam = Camera.main;
 
-                RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24);
-                Cam.targetTexture = rt;
-                Texture2D screenShot = new Texture2D(resolutionWidth, resolutionHeight, TextureFormat.RGB24, false);
-                Cam.Render();
-                RenderTexture.active = rt;
-                screenShot.ReadPixels(new Rect(0, 0, resolutionWidth, resolutionHeight), 0, 0);
-                Cam.targetTexture = null;
-                RenderTexture.active = null; // JC: added to avoid errors
-                Destroy(rt);
+            RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24);
+            Cam.targetTexture = rt;
+            Texture2D screenShot = new Texture2D(resolutionWidth, resolutionHeight, TextureFormat.RGB24, false);
+            Cam.Render();
+            RenderTexture.active = rt;
+            screenShot.ReadPixels(new Rect(0, 0, resolutionWidth, resolutionHeight), 0, 0);
+            Cam.targetTexture = null;
+            RenderTexture.active = null; // JC: added to avoid errors
+            Destroy(rt);
 
 
 
-                message.header.Update();
+            message.header.Update();
 
-                message.data = screenShot.EncodeToJPG(qualityLevel);
-                Publish(message);
+            message.data = screenShot.EncodeToJPG(qualityLevel);
+            Publish(message);
             //}
-     
 
-          
-  
+
+
+
         }
 
         private void InitializeMessage()
@@ -167,3 +146,6 @@ namespace RosSharp.RosBridgeClient
 
 //    }
 //}
+
+
+

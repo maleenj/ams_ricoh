@@ -9,13 +9,13 @@ public class VideoPlay : MonoBehaviour {
 
     void Start()
     {
-        MovieTexture video360_1 = (MovieTexture)Sphere1.GetComponent<Renderer>().material.mainTexture;
-        MovieTexture video360_2 = (MovieTexture)Sphere2.GetComponent<Renderer>().material.mainTexture;
+        //MovieTexture video360_1 = (MovieTexture)Sphere1.GetComponent<Renderer>().material.mainTexture;
+        //MovieTexture video360_2 = (MovieTexture)Sphere2.GetComponent<Renderer>().material.mainTexture;
 
-        video360_1.loop = true;
-        video360_2.loop = true;
-        video360_1.Play();
-        video360_2.Play();
+        //video360_1.loop = true;
+        //video360_2.loop = true;
+        //video360_1.Play();
+        //video360_2.Play();
 
     }
 }
