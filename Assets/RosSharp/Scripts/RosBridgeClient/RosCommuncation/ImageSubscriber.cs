@@ -67,7 +67,6 @@ namespace RosSharp.RosBridgeClient
             sphere2.GetComponent<Renderer>().material.mainTexture = texture2D;
 
             img_recieved.Invoke();
-
             isMessageReceived = false;
         }
 

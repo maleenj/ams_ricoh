@@ -48,15 +48,14 @@ namespace RosSharp.RosBridgeClient
 
             message.header.Update();
 
-            cam.enabled = true;
             screenShot = eye.process_virtualcam(cam);
-            cam.enabled = false;
             message.data = screenShot.EncodeToJPG(qualityLevel);
 
             //byte[] bytes = screenShot.EncodeToJPG(qualityLevel);
             //System.IO.File.WriteAllBytes("filename.jpg", bytes);
 
             Publish(message);
+            //System.GC.Collect();
             //Destroy(eye);
             //Destroy(screenShot);
         }

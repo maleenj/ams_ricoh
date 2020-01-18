@@ -24,6 +24,7 @@ namespace RosSharp.RosBridgeClient
     public class Left_back_pub : UnityPublisher<MessageTypes.Sensor.CompressedImage>
     {
 
+
         public Camera cam;
         //public GameObject virtualcamhandler;
         public string FrameId = "Camera";
@@ -44,21 +45,16 @@ namespace RosSharp.RosBridgeClient
         public void publisheye()
         {
 
-            //eye = new Virtualcam_handler();
-
             message.header.Update();
 
-            cam.enabled = true;
             screenShot = eye.process_virtualcam(cam);
-            cam.enabled = false;
             message.data = screenShot.EncodeToJPG(qualityLevel);
 
             //byte[] bytes = screenShot.EncodeToJPG(qualityLevel);
             //System.IO.File.WriteAllBytes("filename.jpg", bytes);
 
             Publish(message);
-            //Destroy(eye);
-            //Destroy(screenShot);
+
         }
 
         private void InitializeMessage()
@@ -70,3 +66,4 @@ namespace RosSharp.RosBridgeClient
 
     }
 }
+

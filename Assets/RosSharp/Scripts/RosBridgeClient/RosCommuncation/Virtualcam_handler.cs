@@ -9,6 +9,7 @@ public class Virtualcam_handler: MonoBehaviour
     public int resolutionWidth = 480;
     public int resolutionHeight = 480;
     private Texture2D screenShot;
+    private Texture2D RscreenShot;
     private Rect rect;
 
     public Texture2D process_virtualcam(Camera Cam)
@@ -22,11 +23,13 @@ public class Virtualcam_handler: MonoBehaviour
         screenShot.ReadPixels(new Rect(0, 0, resolutionWidth, resolutionHeight), 0, 0);
         Cam.targetTexture = null;
         RenderTexture.active = null; // JC: added to avoid errors
+        RscreenShot = screenShot;
         Destroy(rt);
+        Destroy(screenShot);
 
+        return RscreenShot;
 
-        return screenShot;
-        
 
     }
+
 }
