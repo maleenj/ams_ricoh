@@ -15,6 +15,9 @@ limitations under the License.
 
 using UnityEngine;
 using UnityEngine.Events;
+using System.IO;
+using System;
+using System.Collections.Generic;
 
 namespace RosSharp.RosBridgeClient
 {
@@ -34,15 +37,24 @@ namespace RosSharp.RosBridgeClient
         //Unity event trigger
         public UnityEvent img_recieved;
 
-        
+        //Timing log
+        private long subtime;
+        private long subtime2;
+        //private Datalogwriter write;
+        //public GameObject writer;
+        public List<long> subtimes;
 
         protected override void Start()
         {
+            
             Screen.SetResolution(640, 480, true);
             base.Start();
             texture2D = new Texture2D(1, 1);
-            //meshRenderer.material = new Material(Shader.Find("Standard"));
+            subtimes = new List<long>();
+            //write = writer.GetComponent<Datalogwriter>();
+
         }
+
         private void Update()
         {
             if (isMessageReceived == true)
@@ -53,19 +65,25 @@ namespace RosSharp.RosBridgeClient
 
         protected override void ReceiveMessage(MessageTypes.Sensor.CompressedImage compressedImage)
         {
+           
+            subtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            //Debug.Log("subtime: " + subtime);
+            //write.writetofile("subtime1.csv",subtime.ToString());
+            subtimes.Add(subtime);
             imageData = compressedImage.data;
             isMessageReceived = true;
+            ProcessMessage();
         }
 
         private void ProcessMessage()
         {
             texture2D.LoadImage(imageData);
             texture2D.Apply();
-            //meshRenderer.material.SetTexture("_MainTex", texture2D);
 
             sphere1.GetComponent<Renderer>().material.mainTexture = texture2D;
             sphere2.GetComponent<Renderer>().material.mainTexture = texture2D;
-
+            //subtime2 = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            //Debug.Log("subdif: " + (subtime2- subtime));
             img_recieved.Invoke();
             isMessageReceived = false;
         }

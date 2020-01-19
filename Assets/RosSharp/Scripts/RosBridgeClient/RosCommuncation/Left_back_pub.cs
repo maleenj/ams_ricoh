@@ -17,14 +17,15 @@ limitations under the License.
 // © Siemens AG, 2018, Dr. Martin Bischoff (martin.bischoff@siemens.com)
 
 using UnityEngine;
+using System.IO;
+using System;
+using System.Collections.Generic;
 
 
 namespace RosSharp.RosBridgeClient
 {
     public class Left_back_pub : UnityPublisher<MessageTypes.Sensor.CompressedImage>
     {
-
-
         public Camera cam;
         //public GameObject virtualcamhandler;
         public string FrameId = "Camera";
@@ -34,16 +35,28 @@ namespace RosSharp.RosBridgeClient
         private Virtualcam_handler eye;
         private Texture2D screenShot;
 
+        //Time logginf
+        private long subtime;
+        private long pubtime;
+        private long diff;
+        public List<long> pubtimes;
+        //private Datalogwriter write;
+        //public GameObject writer;
+
+
         protected override void Start()
         {
             base.Start();
             InitializeMessage();
             eye = gameObject.AddComponent<Virtualcam_handler>();
+            //write = writer.GetComponent<Datalogwriter>();
+            pubtimes = new List<long>();
         }
 
 
         public void publisheye()
         {
+            //long subtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             message.header.Update();
 
@@ -53,6 +66,12 @@ namespace RosSharp.RosBridgeClient
             //byte[] bytes = screenShot.EncodeToJPG(qualityLevel);
             //System.IO.File.WriteAllBytes("filename.jpg", bytes);
 
+            long pubtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            pubtimes.Add(pubtime);
+            //Debug.Log("pubtimme1: " + pubtime);
+            //write.writetofile("pub1.csv", pubtime.ToString());
+            //diff = (pubtime - subtime);
+            //Debug.Log("timediff"+ diff);
             Publish(message);
 
         }
@@ -66,4 +85,5 @@ namespace RosSharp.RosBridgeClient
 
     }
 }
+
 
