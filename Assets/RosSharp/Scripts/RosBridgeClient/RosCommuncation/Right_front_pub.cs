@@ -68,7 +68,7 @@ namespace RosSharp.RosBridgeClient
 
             long pubtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             pubtimes.Add(pubtime);
-            //Debug.Log("pubtimme1: " + pubtime);
+            Debug.Log("pubtimme1: " + pubtime);
             //write.writetofile("pub1.csv", pubtime.ToString());
             //diff = (pubtime - subtime);
             //Debug.Log("timediff"+ diff);

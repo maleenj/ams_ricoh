@@ -43,6 +43,8 @@ namespace RosSharp.RosBridgeClient
         //private Datalogwriter write;
         //public GameObject writer;
         public List<long> subtimes;
+        public List<long> subtimes2;
+        public List<long> subdiff;
 
         protected override void Start()
         {
@@ -51,6 +53,8 @@ namespace RosSharp.RosBridgeClient
             base.Start();
             texture2D = new Texture2D(1, 1);
             subtimes = new List<long>();
+            subtimes2 = new List<long>();
+            subdiff = new List<long>();
             //write = writer.GetComponent<Datalogwriter>();
 
         }
@@ -72,7 +76,7 @@ namespace RosSharp.RosBridgeClient
             subtimes.Add(subtime);
             imageData = compressedImage.data;
             isMessageReceived = true;
-            ProcessMessage();
+            
         }
 
         private void ProcessMessage()
@@ -82,8 +86,11 @@ namespace RosSharp.RosBridgeClient
 
             sphere1.GetComponent<Renderer>().material.mainTexture = texture2D;
             sphere2.GetComponent<Renderer>().material.mainTexture = texture2D;
-            //subtime2 = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            //Debug.Log("subdif: " + (subtime2- subtime));
+            subtime2 = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            subtimes2.Add(subtime2);
+            subdiff.Add(subtime2 - subtime);
+
+            Debug.Log("subdif: " + (subtime2- subtime));
             img_recieved.Invoke();
             isMessageReceived = false;
         }

@@ -8,6 +8,9 @@ public class Datalogwriter : MonoBehaviour
 {
     public GameObject rosconnect;
     public List<long> subtimes;
+    public List<long> subtimes2;
+    public List<long> subdiff;
+
     public List<long> pubtimes1;
     public List<long> pubtimes2;
     public List<long> pubtimes3;
@@ -17,6 +20,10 @@ public class Datalogwriter : MonoBehaviour
     public void onclicinvoke() {
 
         subtimes = rosconnect.GetComponent<RosSharp.RosBridgeClient.ImageSubscriber>().subtimes;
+        subtimes2 = rosconnect.GetComponent<RosSharp.RosBridgeClient.ImageSubscriber>().subtimes2;
+        subdiff = rosconnect.GetComponent<RosSharp.RosBridgeClient.ImageSubscriber>().subdiff;
+
+
         pubtimes1 = rosconnect.GetComponent<RosSharp.RosBridgeClient.Right_front_pub>().pubtimes;
         pubtimes2 = rosconnect.GetComponent<RosSharp.RosBridgeClient.Right_back_pub>().pubtimes;
         pubtimes3 = rosconnect.GetComponent<RosSharp.RosBridgeClient.Left_front_pub>().pubtimes;
@@ -25,17 +32,23 @@ public class Datalogwriter : MonoBehaviour
         long[] subs = subtimes.ToArray();
         SaveArrayAsCSV(subs, "subtimes.csv");
 
+        long[] subs2 = subtimes2.ToArray();
+        SaveArrayAsCSV(subs2, "subtimes2.csv");
+
+        long[] diff = subdiff.ToArray();
+        SaveArrayAsCSV(diff, "subdiff.csv");
+
         long[] pubs1 = pubtimes1.ToArray();
-        SaveArrayAsCSV(subs, "pubtimes1.csv");
+        SaveArrayAsCSV(pubs1, "pubtimes1.csv");
 
         long[] pubs2 = pubtimes2.ToArray();
-        SaveArrayAsCSV(subs, "pubtimes2.csv");
+        SaveArrayAsCSV(pubs2, "pubtimes2.csv");
 
         long[] pubs3 = pubtimes3.ToArray();
-        SaveArrayAsCSV(subs, "pubtimes3.csv");
+        SaveArrayAsCSV(pubs3, "pubtimes3.csv");
 
         long[] pubs4 = pubtimes4.ToArray();
-        SaveArrayAsCSV(subs, "pubtimes4.csv");
+        SaveArrayAsCSV(pubs4, "pubtimes4.csv");
 
     }
 
