@@ -15,6 +15,7 @@ public class Virtualcam_handler: MonoBehaviour
 
     public Texture2D process_virtualcam(Camera Cam)
     {
+       
 
         RenderTexture rt = new RenderTexture(resolutionWidth, resolutionHeight, 24);
         Cam.targetTexture = rt;

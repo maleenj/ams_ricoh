@@ -35,13 +35,13 @@ namespace RosSharp.RosBridgeClient
         private Virtualcam_handler eye;
         private Texture2D screenShot;
 
-        //Time logginf
-        private long subtime;
-        private long pubtime;
-        private long diff;
-        public List<long> pubtimes;
-        //private Datalogwriter write;
-        //public GameObject writer;
+        //Time logging
+        //private long subtime;
+        //private long pubtime;
+        //private long diff;
+        //public List<long> pubtimes;
+        ////private Datalogwriter write;
+        ////public GameObject writer;
 
 
         protected override void Start()
@@ -49,8 +49,8 @@ namespace RosSharp.RosBridgeClient
             base.Start();
             InitializeMessage();
             eye = gameObject.AddComponent<Virtualcam_handler>();
-            //write = writer.GetComponent<Datalogwriter>();
-            pubtimes = new List<long>();
+            ////write = writer.GetComponent<Datalogwriter>();
+            //pubtimes = new List<long>();
         }
 
 
@@ -59,19 +59,20 @@ namespace RosSharp.RosBridgeClient
             //long subtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             message.header.Update();
+            //message.header.stamp=
 
             screenShot = eye.process_virtualcam(cam);
             message.data = screenShot.EncodeToJPG(qualityLevel);
 
-            //byte[] bytes = screenShot.EncodeToJPG(qualityLevel);
-            //System.IO.File.WriteAllBytes("filename.jpg", bytes);
+            ////byte[] bytes = screenShot.EncodeToJPG(qualityLevel);
+            ////System.IO.File.WriteAllBytes("filename.jpg", bytes);
+            // long pubtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            //pubtimes.Add(pubtime);
+            //Debug.Log("pubtimme1: " + pubtime);
+            ////write.writetofile("pub1.csv", pubtime.ToString());
+            ////diff = (pubtime - subtime);
+            ////Debug.Log("timediff"+ diff);
 
-            long pubtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            pubtimes.Add(pubtime);
-            Debug.Log("pubtimme1: " + pubtime);
-            //write.writetofile("pub1.csv", pubtime.ToString());
-            //diff = (pubtime - subtime);
-            //Debug.Log("timediff"+ diff);
             Publish(message);
 
         }
