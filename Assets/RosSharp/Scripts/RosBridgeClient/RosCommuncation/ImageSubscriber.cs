@@ -29,19 +29,18 @@ namespace RosSharp.RosBridgeClient
         private Texture2D texture2D;
         private byte[] imageData;
         private bool isMessageReceived;
-        private string substamp;
 
-        public MessageTypes.Std.Time SUBSTAMP;
+        private MessageTypes.Std.Time stamp;
 
         //Shphere stuff
         public GameObject sphere1;
         public GameObject sphere2;
 
         //Unity event trigger
-        public UnityEvent img_recieved;
+        //public UnityEvent img_recieved;
 
         //Timing log
-       
+
         //private long subtime;
         //private long subtime2;
         //public List<long> subtimes;
@@ -50,6 +49,12 @@ namespace RosSharp.RosBridgeClient
 
         ////private Datalogwriter write;
         ////public GameObject writer;
+
+        public Right_front_pub right_Front_Pub;
+        public Right_back_pub right_Back_Pub;
+        public Left_front_pub left_Front_Pub;
+        public Left_back_pub left_Back_Pub;
+
 
         protected override void Start()
         {
@@ -63,6 +68,11 @@ namespace RosSharp.RosBridgeClient
             //subdiff = new List<long>();
 
             ////write = writer.GetComponent<Datalogwriter>();
+            right_Front_Pub = gameObject.GetComponent<Right_front_pub>();
+            right_Back_Pub = gameObject.GetComponent<Right_back_pub>();
+            left_Front_Pub = gameObject.GetComponent<Left_front_pub>();
+            left_Back_Pub = gameObject.GetComponent<Left_back_pub>();
+
 
         }
 
@@ -76,21 +86,26 @@ namespace RosSharp.RosBridgeClient
 
         protected override void ReceiveMessage(MessageTypes.Sensor.CompressedImage compressedImage)
         {
-           
+
             //subtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             ////Debug.Log("subtime: " + subtime);
             ////write.writetofile("subtime1.csv",subtime.ToString());
             //subtimes.Add(subtime);
-            imageData = compressedImage.data;
 
-            SUBSTAMP = compressedImage.header.stamp;
-            Debug.Log("Stamp: " + SUBSTAMP.ToString());
-            isMessageReceived = true;
+            if (isMessageReceived == false)
+            {
+                imageData = compressedImage.data;
+                stamp = compressedImage.header.stamp;
+                Debug.Log("Stamp: " + stamp.ToString());
+                isMessageReceived = true;
+            }
+
             
         }
 
         private void ProcessMessage()
         {
+
             texture2D.LoadImage(imageData);
             texture2D.Apply();
 
@@ -102,7 +117,15 @@ namespace RosSharp.RosBridgeClient
             //subdiff.Add(subtime2 - subtime);
             //Debug.Log("subdif: " + (subtime2- subtime));
 
-            img_recieved.Invoke();
+            right_Front_Pub.publisheye(stamp);
+            right_Back_Pub.publisheye(stamp);
+            left_Front_Pub.publisheye(stamp);
+            left_Back_Pub.publisheye(stamp);
+
+            //img_recieved.Invoke();
+
+
+
             isMessageReceived = false;
         }
 

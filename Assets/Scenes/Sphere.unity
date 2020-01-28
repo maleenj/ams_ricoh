@@ -924,7 +924,7 @@ MonoBehaviour:
   SecondsTimeout: 30
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://192.168.0.217:9090
+  RosBridgeServerUrl: ws://192.168.0.243:9090
 --- !u!114 &1913900981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,53 +941,10 @@ MonoBehaviour:
   TimeStep: 0
   sphere1: {fileID: 1508652443}
   sphere2: {fileID: 1508652444}
-  img_recieved:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1913900978}
-        m_MethodName: publisheye
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ss
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1913900983}
-        m_MethodName: publisheye
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1913900984}
-        m_MethodName: publisheye
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1913900982}
-        m_MethodName: publisheye
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  right_Front_Pub: {fileID: 0}
+  right_Back_Pub: {fileID: 0}
+  left_Front_Pub: {fileID: 0}
+  left_Back_Pub: {fileID: 0}
 --- !u!114 &1913900982
 MonoBehaviour:
   m_ObjectHideFlags: 0

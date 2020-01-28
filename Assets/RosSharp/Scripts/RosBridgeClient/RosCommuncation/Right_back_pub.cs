@@ -35,6 +35,8 @@ namespace RosSharp.RosBridgeClient
         private Virtualcam_handler eye;
         private Texture2D screenShot;
 
+
+
         //Time logging
         //private long subtime;
         //private long pubtime;
@@ -54,12 +56,12 @@ namespace RosSharp.RosBridgeClient
         }
 
 
-        public void publisheye()
+        public void publisheye(MessageTypes.Std.Time stamp)
         {
             //long subtime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             message.header.Update();
-            //message.header.stamp=
+            message.header.stamp = stamp;
 
             screenShot = eye.process_virtualcam(cam);
             message.data = screenShot.EncodeToJPG(qualityLevel);
@@ -86,5 +88,4 @@ namespace RosSharp.RosBridgeClient
 
     }
 }
-
 
