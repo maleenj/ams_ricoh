@@ -50,10 +50,10 @@ namespace RosSharp.RosBridgeClient
         ////private Datalogwriter write;
         ////public GameObject writer;
 
-        public Right_front_pub right_Front_Pub;
-        public Right_back_pub right_Back_Pub;
-        public Left_front_pub left_Front_Pub;
-        public Left_back_pub left_Back_Pub;
+        private Right_front_pub right_Front_Pub;
+        private Right_back_pub right_Back_Pub;
+        private Left_front_pub left_Front_Pub;
+        private Left_back_pub left_Back_Pub;
 
 
         protected override void Start()

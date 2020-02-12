@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /right_front_eye/compressed
   cam: {fileID: 1631021191}
-  FrameId: ricoh
+  FrameId: ricoh_rf
   qualityLevel: 100
 --- !u!4 &1913900979
 Transform:
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   SecondsTimeout: 30
   Serializer: 0
   protocol: 0
-  RosBridgeServerUrl: ws://192.168.0.243:9090
+  RosBridgeServerUrl: ws://192.168.0.217:9090
 --- !u!114 &1913900981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /left_back_eye/compressed
   cam: {fileID: 1413104998}
-  FrameId: ricoh
+  FrameId: ricoh_lb
   qualityLevel: 100
 --- !u!114 &1913900983
 MonoBehaviour:
@@ -1512,7 +1512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /right_back_eye/compressed
   cam: {fileID: 1965954052}
-  FrameId: ricoh
+  FrameId: ricoh_rb
   qualityLevel: 100
 --- !u!114 &1913900984
 MonoBehaviour:
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Topic: /left_front_eye/compressed
   cam: {fileID: 2006313106}
-  FrameId: ricoh
+  FrameId: ricoh_lf
   qualityLevel: 100
 --- !u!1 &1965954051
 GameObject:
@@ -1559,7 +1559,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_GateFitMode: 2

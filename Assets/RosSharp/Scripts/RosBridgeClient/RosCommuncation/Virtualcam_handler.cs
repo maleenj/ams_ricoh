@@ -7,8 +7,8 @@ public class Virtualcam_handler: MonoBehaviour
 {
     //public Camera Cam;
 
-    public int resolutionWidth = 480;
-    public int resolutionHeight = 480;
+    public int resolutionWidth = 426;
+    public int resolutionHeight = 426;
     private Texture2D screenShot;
     private Texture2D RscreenShot;
     private Rect rect;
